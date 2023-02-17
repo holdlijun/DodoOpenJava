@@ -86,10 +86,12 @@ public class MessageEvent extends Event {
         this.member = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member");
         this.memberJoinTime = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member").getString("joinTime");
         this.memberNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member").getString("nickName");
-        this.reference = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("reference");
-        this.referenceMessageId = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("reference").getString("messageId");
-        this.referenceDodoSourceId = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("reference").getString("dodoSourceId");
-        this.referenceNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("reference").getString("nickName");
+        if (json.getJSONObject("data").getJSONObject("eventBody").has("reference")){
+            this.reference = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("reference");
+        }else {this.reference = null;}
+        this.referenceMessageId = null != reference ? reference.getString("messageId") : null;
+        this.referenceDodoSourceId = null != reference ? reference.getString("dodoSourceId") : null;
+        this.referenceNickName = null != reference ? reference.getString("nickName") : null;
         this.messageType = IntMessageTypeToMessageType(json.getJSONObject("data").getJSONObject("eventBody").getInt("messageType"));
         this.messageIntType = json.getJSONObject("data").getJSONObject("eventBody").getInt("messageType");
         this.messageBody = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("messageBody");
@@ -309,5 +311,32 @@ public class MessageEvent extends Event {
      */
     public JSONObject getJsonObject() {
         return this.jsonObject;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageEvent{" +
+                "timestamp=" + timestamp +
+                ", eventId='" + eventId + '\'' +
+                ", islandSourceId='" + islandSourceId + '\'' +
+                ", channelId='" + channelId + '\'' +
+                ", dodoSourceId='" + dodoSourceId + '\'' +
+                ", messageId='" + messageId + '\'' +
+                ", messageIntType=" + messageIntType +
+                ", messageType='" + messageType + '\'' +
+                ", personal=" + personal +
+                ", senderNickName='" + senderNickName + '\'' +
+                ", senderAvatarUrl='" + senderAvatarUrl + '\'' +
+                ", senderIntSex=" + senderIntSex +
+                ", senderSex='" + senderSex + '\'' +
+                ", member=" + member +
+                ", memberNickName='" + memberNickName + '\'' +
+                ", memberJoinTime='" + memberJoinTime + '\'' +
+                ", reference=" + reference +
+                ", referenceMessageId='" + referenceMessageId + '\'' +
+                ", referenceDodoSourceId='" + referenceDodoSourceId + '\'' +
+                ", referenceNickName='" + referenceNickName + '\'' +
+                ", messageBody=" + messageBody +
+                '}';
     }
 }

@@ -32,6 +32,11 @@ public class MemberJoinEvent extends Event {
 
     public String modifyTime;
 
+    private String nickName;
+    private String avatarUrl;
+    private Integer sex;
+    public String senderSex;
+
     public JSONObject jsonObject;
 
     public String jsonString;
@@ -44,8 +49,20 @@ public class MemberJoinEvent extends Event {
         this.islandSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("islandSourceId");
         this.dodoSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("dodoSourceId");
         this.modifyTime = json.getJSONObject("data").getJSONObject("eventBody").getString("modifyTime");
+
+        this.nickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("nickName");
+        this.avatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl");
+        this.sex = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex");
+        this.senderSex = IntSexToSex(json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex"));
     }
 
+    public String IntSexToSex(Integer IntSex) {
+        return switch (IntSex) {
+            case 0 -> "女";
+            case 1 -> "男";
+            default -> "保密";
+        };
+    }
     /**
      * 获取时间戳
      * @return 返回时间戳
@@ -100,5 +117,44 @@ public class MemberJoinEvent extends Event {
      */
     public String getJsonString() {
         return this.jsonString;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberJoinEvent{" +
+                "timestamp=" + timestamp +
+                ", eventId='" + eventId + '\'' +
+                ", islandSourceId='" + islandSourceId + '\'' +
+                ", dodoSourceId='" + dodoSourceId + '\'' +
+                ", modifyTime='" + modifyTime + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", sex=" + sex +
+                ", senderSex='" + senderSex + '\'' +
+                '}';
     }
 }

@@ -2,6 +2,8 @@ package io.github.mcchampions.DodoOpenJava.Event;
 
 import io.github.mcchampions.DodoOpenJava.Api.Version;
 import io.github.mcchampions.DodoOpenJava.Event.events.V2.GiftSendEvent;
+import io.github.mcchampions.DodoOpenJava.Event.events.V2.IntegralChangeEvent;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okio.ByteString;
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * ÊÂ¼þ´¥·¢
  * @author qscbm187531
  */
+@Slf4j
 public class EventTrigger {
     public static EventTrigger p;
     public static String wssLo="";
@@ -52,7 +55,11 @@ public class EventTrigger {
                 response.close();
                 Request request = new Request.Builder()
                         .url(wssLo).build();
-                mWebSocket = wss.newWebSocket(request, new WsListenerC1(p));
+                try {
+                    mWebSocket = wss.newWebSocket(request, new WsListenerC1(p));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -94,12 +101,16 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.PersonalMessageEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case "2001":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.MessageEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -108,12 +119,16 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.MessageReactionEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case "3002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.CardMessageButtonClickEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -122,12 +137,16 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.CardMessageFormSubmitEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case "3004":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.CardMessageListSubmitEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -136,12 +155,17 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.MemberJoinEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
+
                     break;
                 case "4002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.MemberLeaveEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -150,12 +174,16 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.ChannelVoiceMemberJoinEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case "5002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.ChannelVoiceMemberLeaveEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -164,12 +192,25 @@ public class EventTrigger {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.ChannelArticleEvent(jsontext));
                     } catch (EventException e) {
                         throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case "6002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.ChannelArticleCommentEvent(jsontext));
                     } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "4003":
+                    try {
+                        EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V1.MemberJoinEvent(jsontext));
+                    } catch (EventException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
@@ -202,7 +243,7 @@ public class EventTrigger {
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.PersonalMessageEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
 
@@ -210,84 +251,98 @@ public class EventTrigger {
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.MessageEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "3001":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.MessageReactionEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "3002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.CardMessageButtonClickEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "3003":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.CardMessageFormSubmitEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "3004":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.CardMessageListSubmitEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "4001":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.MemberJoinEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "4002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.MemberLeaveEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "5001":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.ChannelVoiceMemberJoinEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "5002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.ChannelVoiceMemberLeaveEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "6001":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.ChannelArticleEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "6002":
                     try {
                         EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.ChannelArticleCommentEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
                     }
                     break;
                 case "7001":
                     try {
                         EventManage.fireEvent(new GiftSendEvent(jsontext));
                     } catch (EventException e) {
-                        throw new RuntimeException(e);
+                        log.error("",e);
+                    }
+                    break;
+                case "8001":
+                    try {
+                        EventManage.fireEvent(new IntegralChangeEvent(jsontext));
+                    } catch (EventException e) {
+                        log.error("",e);
+                    }
+                    break;
+                case "4003":
+                    try {
+                        EventManage.fireEvent(new io.github.mcchampions.DodoOpenJava.Event.events.V2.MemberInviteEvent(jsontext));
+                    } catch (Exception e) {
+                        log.error("",e);
                     }
                     break;
                 default:
