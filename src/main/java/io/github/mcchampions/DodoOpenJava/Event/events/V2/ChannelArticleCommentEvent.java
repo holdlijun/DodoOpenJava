@@ -6,6 +6,7 @@ import io.github.mcchampions.DodoOpenJava.Utils.BaseUtil;
 import org.json.JSONObject;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,11 +66,15 @@ public class ChannelArticleCommentEvent extends Event {
     public String replyId;
 
     public ChannelArticleCommentEvent(JSONObject json) {
-        this.replyId = json.getJSONObject("data").getJSONObject("eventBody").getString("replyId");
+
+        this.replyId = json.getJSONObject("data").getJSONObject("eventBody").has("replyId") ?
+                json.getJSONObject("data").getJSONObject("eventBody").getString("replyId") : null;
         this.commentId = json.getJSONObject("data").getJSONObject("eventBody").getString("commentId");
         this.articleId = json.getJSONObject("data").getJSONObject("eventBody").getString("articleId");
-        this.content = json.getJSONObject("data").getJSONObject("eventBody").getString("content");
-        this.imageList = BaseUtil.toStringList(json.getJSONObject("data").getJSONObject("eventBody").getJSONArray("content").toList());
+        this.content = json.getJSONObject("data").getJSONObject("eventBody").has("content")
+                ? json.getJSONObject("data").getJSONObject("eventBody").getString("content") :null;
+        this.imageList = json.getJSONObject("data").getJSONObject("eventBody").has("imageList") ?
+                BaseUtil.toStringList(json.getJSONObject("data").getJSONObject("eventBody").getJSONArray("imageList").toList()) : new ArrayList<>();
         this.jsonObject = json;
         this.channelId = json.getJSONObject("data").getJSONObject("eventBody").getString("channelId");
         this.jsonString = json.toString();

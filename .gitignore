@@ -26,3 +26,4 @@ replay_pid*
 /DodoOpenJava.iml
 .idea/workspace.xml
 /target
+.idea/*

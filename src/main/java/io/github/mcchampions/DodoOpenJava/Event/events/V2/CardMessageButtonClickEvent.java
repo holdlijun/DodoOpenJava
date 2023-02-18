@@ -75,7 +75,8 @@ public class CardMessageButtonClickEvent extends Event {
         this.member = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member");
         this.memberJoinTime = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member").getString("joinTime");
         this.memberNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member").getString("nickName");
-        this.interactCustomId = json.getJSONObject("data").getJSONObject("eventBody").getString("interactCustomId");
+        this.interactCustomId = json.getJSONObject("data").getJSONObject("eventBody").has("interactCustomId")
+                ? json.getJSONObject("data").getJSONObject("eventBody").getString("interactCustomId") : null;
     }
 
     /**

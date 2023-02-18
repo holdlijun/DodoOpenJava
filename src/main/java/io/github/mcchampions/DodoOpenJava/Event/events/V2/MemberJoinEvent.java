@@ -51,7 +51,8 @@ public class MemberJoinEvent extends Event {
         this.modifyTime = json.getJSONObject("data").getJSONObject("eventBody").getString("modifyTime");
 
         this.nickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("nickName");
-        this.avatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl");
+        this.avatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").has("avatarUrl") ?
+                json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl") : null;
         this.sex = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex");
         this.senderSex = IntSexToSex(json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex"));
     }

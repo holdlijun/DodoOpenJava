@@ -80,7 +80,8 @@ public class MessageEvent extends Event {
         this.messageId = json.getJSONObject("data").getJSONObject("eventBody").getString("messageId");
         this.personal = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal");
         this.senderNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("nickName");
-        this.senderAvatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl");
+        this.senderAvatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").has("avatarUrl") ?
+                json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl") : null;
         this.senderSex = IntSexToSex(json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex"));
         this.senderIntSex = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex");
         this.member = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("member");

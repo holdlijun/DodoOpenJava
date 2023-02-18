@@ -80,7 +80,7 @@ public class EventManage {
         if (!isInit) {
             isInit = true;
             CommandTrigger.listenerConsole();
-            EventTrigger.main(ad,version);
+            EventTrigger.getInstance().init(ad,version);
         }
     }
 
@@ -105,7 +105,7 @@ public class EventManage {
         if (!isInit) {
             isInit = true;
             CommandTrigger.listenerConsole();
-            EventTrigger.main(ad,version);
+            EventTrigger.getInstance().init(ad,version);
         }
     }
 

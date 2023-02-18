@@ -53,21 +53,26 @@ public class MemberLeaveEvent extends Event {
     public String operateDoDoId;
 
     public MemberLeaveEvent(JSONObject json) {
+        this.islandSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("islandSourceId");
+        this.dodoSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("dodoSourceId");
+        this.operateDoDoId = json.getJSONObject("data").getJSONObject("eventBody").getString("operateDodoSourceId");
         this.personal = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal");
         this.userNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("nickName");
         this.userAvatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl");
         this.userSex = IntSexToSex(json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex"));
         this.userIntSex = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex");
+
+        this.leaveType = IntLeaveTypeToLeaveType(json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType"));
+        this.leaveIntType = json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType");
+
         this.jsonObject = json;
         this.jsonString = json.toString();
         this.timestamp = json.getJSONObject("data").getInt("timestamp");
         this.eventId = json.getJSONObject("data").getString("eventId");
-        this.islandSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("islandSourceId");
-        this.dodoSourceId = json.getJSONObject("data").getJSONObject("eventBody").getString("dodoSourceId");
+
         this.modifyTime = json.getJSONObject("data").getJSONObject("eventBody").getString("modifyTime");
-        this.leaveType = IntLeaveTypeToLeaveType(json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType"));
-        this.leaveIntType = json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType");
-        this.operateDoDoId = json.getJSONObject("data").getJSONObject("eventBody").getString("operateDoDoId");
+
+
     }
 
     /**
