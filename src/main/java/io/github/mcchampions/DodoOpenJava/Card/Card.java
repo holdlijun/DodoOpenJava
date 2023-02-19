@@ -314,7 +314,7 @@ public class Card {
 
         JSONObject json1 = new JSONObject();
         json1.put("type", "section");
-        json1.put("text", section);
+        json1.put("text", section.toJSONObject());
         json1.put("align", align.getType());
         json1.put("accessory", buttonGroup.toJsonObject());
         JsonCard.getJSONObject("card").getJSONArray("components").put(json1);
