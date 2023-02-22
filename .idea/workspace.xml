@@ -31,9 +31,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a4fef2d-9e6b-4f64-a5d9-7dabd855f7a4" name="变更" comment="更新">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/Button.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/test/cardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/Accessory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/enums/ButtonAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/mcchampions/DodoOpenJava/Card/enums/ButtonAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,13 +112,13 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.BotApi">
-    <configuration name="BotApi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.mcchampions.DodoOpenJava.Api.V2.BotApi" />
+  <component name="RunManager" selected="Application.cardTest">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.mcchampions.DodoOpenJava.Test" />
       <module name="DodoOpenJava" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.github.mcchampions.DodoOpenJava.Api.V2.*" />
+          <option name="PATTERN" value="io.github.mcchampions.DodoOpenJava.CustomException.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,12 +126,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.mcchampions.DodoOpenJava.Test" />
+    <configuration name="cardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.mcchampions.DodoOpenJava.test.cardTest" />
       <module name="DodoOpenJava" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.github.mcchampions.DodoOpenJava.CustomException.*" />
+          <option name="PATTERN" value="io.github.mcchampions.DodoOpenJava.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -176,6 +178,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.cardTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -319,7 +326,9 @@
       <workItem from="1676720055519" duration="17279000" />
       <workItem from="1676740201251" duration="17000" />
       <workItem from="1676777368478" duration="1792000" />
-      <workItem from="1676796362011" duration="8297000" />
+      <workItem from="1676796362011" duration="8389000" />
+      <workItem from="1676992369750" duration="1705000" />
+      <workItem from="1677076817793" duration="4347000" />
     </task>
     <servers />
   </component>

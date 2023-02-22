@@ -151,9 +151,9 @@ public class Card {
         for(int i = 0; i < MapUtil.ergodicHashMaps(text).size();i++) {
             String Type = ((RemarkType)MapUtil.ergodicHashMaps(text).get(i).get(0)).getType();
             if (Type.equals("image")) {
-                JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{\"text\": { \"type\": \"" + Type + "\", \"src\": \"" + MapUtil.ergodicHashMaps(text).get(i).get(1) + "\"}}"));
+                JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{ \"type\": \"" + Type + "\", \"src\": \"" + MapUtil.ergodicHashMaps(text).get(i).get(1) + "\"}"));
             } else {
-                JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{\"text\": { \"type\": \"" + Type + "\", \"content\": \"" + MapUtil.ergodicHashMaps(text).get(i).get(1) + "\"}}"));
+                JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{ \"type\": \"" + Type + "\", \"content\": \"" + MapUtil.ergodicHashMaps(text).get(i).get(1) + "\"}"));
             }
         }
         return true;
@@ -315,6 +315,25 @@ public class Card {
         JSONObject json1 = new JSONObject();
         json1.put("type", "section");
         json1.put("text", section.toJSONObject());
+        json1.put("align", align.getType());
+        json1.put("accessory", buttonGroup.toJsonObject());
+        JsonCard.getJSONObject("card").getJSONArray("components").put(json1);
+        return true;
+    }
+
+    /**
+     * 增加 文字与模块 交互组件
+     * @param align 对齐方式，left：左对齐，right：右对齐
+     * @param section 文字
+     * @param buttonGroup 按钮
+     * @return 成功与否
+     */
+    public Boolean addSection(Align align, Section section, Accessory buttonGroup) {
+        if (JsonCard.isEmpty()) initCard();
+
+        JSONObject json1 = new JSONObject();
+        json1.put("type", "section");
+        json1.put("text", section.toJSONObject().getJSONObject("text"));
         json1.put("align", align.getType());
         json1.put("accessory", buttonGroup.toJsonObject());
         JsonCard.getJSONObject("card").getJSONArray("components").put(json1);

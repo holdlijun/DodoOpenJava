@@ -11,7 +11,7 @@ import java.util.Objects;
  * 按钮组这个对象
  * @author qscbm187531
  */
-public class Button {
+public class Accessory {
     JSONObject jsonButton = new JSONObject();
 
     /**
@@ -42,7 +42,6 @@ public class Button {
     public Boolean addButton(Color buttonColor, String buttonName, String interactCustomId, ButtonAction action, Object object) {
         Form form = new Form();
         String value = "";
-        Object o = null;
         boolean isForm = false;
 
         if (!Objects.equals(action.getType(), "form")) {
@@ -63,7 +62,6 @@ public class Button {
         JSONObject json1 = new JSONObject();
 
         json1.put("type", "button");
-        json1.put("interactCustomId", interactCustomId);
         json1.put("color", buttonColor.getType());
         json1.put("name", buttonName);
 
@@ -90,7 +88,7 @@ public class Button {
      * @param object 按钮点击动作的值，不是表单就是String类型，是表单就传入Form
      * @return true/false
      */
-    public Boolean addButton(Color ButtonColor, String ButtonName, ButtonAction action,Object object) {
+    public Boolean addAccessory(Color ButtonColor, String ButtonName, ButtonAction action,Object object) {
         Form form = new Form();
         String value = "";
         boolean isForm = false;
@@ -126,8 +124,7 @@ public class Button {
         if (isForm) {
             json1.put("form", form.JsonForm);
         }
-
-        jsonButton.getJSONArray("elements").put(json1);
+        jsonButton = json1;
         return true;
     }
 

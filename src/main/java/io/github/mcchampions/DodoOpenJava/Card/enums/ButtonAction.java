@@ -21,7 +21,8 @@ public enum ButtonAction {
     /**
      * 回传表单
      */
-    form("form");
+    form("form"),
+    image("image");
     ButtonAction(String type) {
         this.type = type;
     }
