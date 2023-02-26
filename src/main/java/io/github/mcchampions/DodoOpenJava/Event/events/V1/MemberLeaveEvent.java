@@ -55,7 +55,8 @@ public class MemberLeaveEvent extends Event {
     public MemberLeaveEvent(JSONObject json) {
         this.personal = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal");
         this.userNickName = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("nickName");
-        this.userAvatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl");
+        this.userAvatarUrl = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").has("avatarUrl")
+                ? json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getString("avatarUrl") : "";
         this.userSex = IntSexToSex(json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex"));
         this.userIntSex = json.getJSONObject("data").getJSONObject("eventBody").getJSONObject("personal").getInt("sex");
         this.jsonObject = json;
@@ -67,7 +68,8 @@ public class MemberLeaveEvent extends Event {
         this.modifyTime = json.getJSONObject("data").getJSONObject("eventBody").getString("modifyTime");
         this.leaveType = IntLeaveTypeToLeaveType(json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType"));
         this.leaveIntType = json.getJSONObject("data").getJSONObject("eventBody").getInt("leaveType");
-        this.operateDoDoId = json.getJSONObject("data").getJSONObject("eventBody").getString("operateDoDoId");
+        this.operateDoDoId = json.getJSONObject("data").getJSONObject("eventBody").has("")
+                ? json.getJSONObject("data").getJSONObject("eventBody").getString("operateDodoSourceId") : "";
     }
 
     /**
