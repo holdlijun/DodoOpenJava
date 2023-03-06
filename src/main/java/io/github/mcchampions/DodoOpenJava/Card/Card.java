@@ -181,7 +181,7 @@ public class Card {
         JsonCard.getJSONObject("card").getJSONArray("components").put(new JSONObject("{\"type\": \"image-group\", \"elements\": []}"));
         if (urls.size() > 9) return false;
         for (int i = 0; i < urls.size();i ++) {
-            JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{\"type\": \"image\", \"src\": \"" + urls.get(1) + "\"}"));
+            JsonCard.getJSONObject("card").getJSONArray("components").getJSONObject(JsonCard.getJSONObject("card").getJSONArray("components").toList().size() - 1).getJSONArray("elements").put(new JSONObject("{\"type\": \"image\", \"src\": \"" + urls.get(i) + "\"}"));
         }
         return true;
     }

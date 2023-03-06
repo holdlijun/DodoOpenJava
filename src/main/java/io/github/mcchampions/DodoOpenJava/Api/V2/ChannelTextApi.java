@@ -571,6 +571,25 @@ public class ChannelTextApi {
     }
 
     /**
+     * 发送卡片消息
+     *
+     * @param Authorization Authorization
+     * @param channelId 频道号
+     * @param messageBody 卡片代码
+     * @return JSON对象
+     * @throws IOException 失败后抛出
+     */
+    public static JSONObject sendCardMessage(String Authorization, String channelId,Card messageBody,String dodoSourceId) throws IOException {
+        url = "https://botopen.imdodo.com/api/v2/channel/message/send";
+        parm = "{" +
+                "    \"channelId\": \"" + channelId + "\"," +
+                "    \"dodoSourceId\": \"" + dodoSourceId	 + "\"," +
+                "    \"messageType\": 6," +
+                "    \"messageBody\": " + messageBody.toJSONObject().toString() +
+                "}";
+        return new JSONObject(NetUtil.sendRequest(parm, url, Authorization));
+    }
+    /**
      * 编辑卡片消息
      *
      * @param clientId 机器人唯一标识
@@ -583,6 +602,8 @@ public class ChannelTextApi {
     public static JSONObject editChannelCardMessage(String clientId, String token, String messageId, Card messageBody) throws IOException {
         return editChannelCardMessage(BaseUtil.Authorization(clientId,token), messageId, messageBody);
     }
+
+
 
     /**
      * 编辑卡片消息

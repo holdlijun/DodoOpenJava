@@ -5,6 +5,7 @@ import io.github.mcchampions.DodoOpenJava.Utils.NetUtil;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 成员API
@@ -142,6 +143,21 @@ public class MemberApi {
                 "    \"dodoSourceId\": \"" + dodoSourceId + "\"" +
                 "}";
         return new JSONObject(NetUtil.sendRequest(param, url, authorization));
+    }
+
+    /**
+     * 获取成员DoDo号映射列表
+     *
+     * @param authorization authorization
+     * @param dodoIds Dodo号
+     * @return JSON对象
+     * @throws IOException 失败后抛出
+     */
+    public static JSONObject getMemberDodoIdMapList(String authorization, List<String> dodoIds) throws IOException {
+        url = "https://botopen.imdodo.com/api/v2/member/dodoid/map/list";
+        JSONObject object = new JSONObject();
+        object.put("dodoIdList",dodoIds);
+        return new JSONObject(NetUtil.sendRequest(object.toString(), url, authorization));
     }
 
     /**
