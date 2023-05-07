@@ -223,6 +223,12 @@ public class Card {
         JsonCard.getJSONObject("card").getJSONArray("components").put(new JSONObject("{\"type\": \"countdown\", \"endTime\": " + endTime + ", \"style\": \"" + style.toString() + "\",\"title\": \"" + title + "\"}"));
         return true;
     }
+
+    public Boolean addButtonFrom(ButtonFrom buttonFrom) {
+        if (JsonCard.isEmpty()) initCard();
+        JsonCard.getJSONObject("card").getJSONArray("components").put(buttonFrom.jsonButton);
+        return true;
+    }
     /**
      * 增加倒计时组件
      * @param style 显示样式
